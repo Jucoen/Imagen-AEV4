@@ -18,14 +18,9 @@ jobs:
         with:
           php-version: '8.3'
 
-      # Paso 2: Cambiar al directorio 'AEV4' donde está composer.json
-      - name: Cambiar al directorio AEV4
-        run: cd AEV4
-
-      # Paso 3: Instalar dependencias con Composer
-      - name: Instalar dependencias con Composer
+      - name: Install Composer dependencies
         run: |
-          cd AEV4  # Asegúrate de estar en el directorio correcto
+          cd AEV4
           composer install
 
   deploy:
