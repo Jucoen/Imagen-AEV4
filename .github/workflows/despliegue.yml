@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          cd AEV4  # Aquí accedemos a la subcarpeta que contiene composer.json
+          cd AEV4  # Aquí accedemos a la carpeta AEV4 que contiene composer.json
           composer install
 
   deploy:
@@ -38,7 +38,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd AEV4  # Asegúrate de que composer.json esté en esta carpeta
+          cd AEV4  # Nuevamente, accedemos a la carpeta que contiene composer.json
           composer install
 
       - name: Set up SSH
