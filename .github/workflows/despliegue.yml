@@ -32,11 +32,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-
       - name: List files in the root directory (to check folder structure)
         run: ls -al
 
@@ -44,11 +39,16 @@ jobs:
         run: |
           ls -al AEV4  # Verifica si composer.json está en la carpeta AEV4
 
-      - name: Install dependencies
+      - name: List files in the db_mysql/AEV4 directory (to check contents)
         run: |
-          cd AEV4  # Cambiar al directorio correcto que contiene composer.json
-          ls -al    # Listar los archivos en AEV4 para asegurarse de que composer.json está allí
-          composer install   # Instalar las dependencias usando composer
+          ls -al db_mysql/AEV4  # Verifica qué archivos están dentro de db_mysql/AEV4
+
+      - name: Check files to deploy
+        run: |
+          # Listamos todos los archivos que se están enviando al servidor para depurar el despliegue
+          ls -al  # Verifica qué archivos están en la raíz del repositorio antes de la sincronización
+          ls -al AEV4  # Verifica qué archivos están dentro de AEV4 antes de la sincronización
+          ls -al db_mysql  # Verifica qué archivos están dentro de db_mysql
 
       - name: Deploy to server
         env:
@@ -60,16 +60,16 @@ jobs:
           mkdir -p ~/.ssh
           echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          
+
           # Use SSH to create the deploy path if it doesn't exist
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST "mkdir -p $DEPLOY_PATH"
-          
+
           # Sync the application files to the server
           rsync -avz --delete --no-t --exclude 'vendor' --exclude '.git' . $USERNAME@$HOST:$DEPLOY_PATH
-          
+
           # Optionally, run Composer install on the server
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST "cd $DEPLOY_PATH && composer install --no-dev --optimize-autoloader"
-          
+
           # Restart Apache if needed
           ssh -o StrictHostKeyChecking=no $USERNAME@$HOST "sudo systemctl restart apache2"
 
