@@ -18,8 +18,15 @@ jobs:
         with:
           php-version: '8.3'
 
-      - name: Install dependencies
-        run: composer install
+      # Paso 2: Cambiar al directorio 'AEV4' donde está composer.json
+      - name: Cambiar al directorio AEV4
+        run: cd AEV4
+
+      # Paso 3: Instalar dependencias con Composer
+      - name: Instalar dependencias con Composer
+        run: |
+          cd AEV4  # Asegúrate de estar en el directorio correcto
+          composer install
 
   deploy:
     runs-on: ubuntu-latest
