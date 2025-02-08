@@ -41,7 +41,10 @@ jobs:
 
       # Step 3: Install dependencies
       - name: Install dependencies
-        run: cd AEV4 && composer install
+        run: |
+          cd AEV4  # Cambiar al directorio correcto que contiene composer.json
+          ls -al    # Listar los archivos en el directorio AEV4 para asegurarse de que composer.json está allí
+          composer install
 
       # Step 4: Deploy to server
       - name: Deploy to server
