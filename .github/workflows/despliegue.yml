@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          cd AEV4
+          cd AEV4  # Aquí accedemos a la subcarpeta que contiene composer.json
           composer install
 
   deploy:
@@ -37,7 +37,9 @@ jobs:
           php-version: '8.3'
 
       - name: Install dependencies
-        run: composer install
+        run: |
+          cd AEV4  # Asegúrate de que composer.json esté en esta carpeta
+          composer install
 
       - name: Set up SSH
         run: |
