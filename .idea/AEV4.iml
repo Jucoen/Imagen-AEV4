@@ -2,8 +2,6 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/AEV4/src" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/AEV4/tests" isTestSource="true" packagePrefix="App\Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/AEV4/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/AEV4/vendor/doctrine/cache" />
       <excludeFolder url="file://$MODULE_DIR$/AEV4/vendor/doctrine/collections" />
