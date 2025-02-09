@@ -50,7 +50,6 @@ jobs:
         USERNAME: ${{ secrets.REMOTE_USER }} 
         DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }} 
       run: |
-        chmod 700 ~/.ssh
         mkdir -p ~/.ssh 
         echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa 
         chmod 600 ~/.ssh/id_rsa 
